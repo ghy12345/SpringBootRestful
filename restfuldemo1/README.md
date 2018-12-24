@@ -145,3 +145,52 @@ SpringBoot的单元测试
   ```
 
 - 重启项目
+
+### [日志记录](https://blog.csdn.net/ztchun/article/details/79804583)
+
+- Commons-logging or SLF4j
+  - private static final Log log = LogFactory.getLog(Xxxx.class);
+  - private static final Logger logger = LoggerFactory.getLogger(Xxxx.class);
+
+- 日志级别
+
+  TRACE<DEBUG<INFO<WARN<ERROR<FATAL
+
+- application.yml配置日志
+
+  ```yml
+  logging:
+    file: target/app.log
+    level:
+      ROOT: WARN
+      me.groad: TRACE
+      me.groad.restfuldemo1.Controller: DEBUG
+  ```
+
+- 在方法中引入
+
+  ```java
+  import org.apache.commons.logging.Log;
+  import org.apache.commons.logging.LogFactory;
+  
+  public class SampleClass {
+      private static final Log log = LogFactory.getLog(SampleClass.class);
+      
+      public void print(String name) {
+          if(log.isTraceEnabled()) {
+              log.trace("传入参数是： " + name);
+          }
+          
+          try {
+              // do something
+          }catch(Exception e) {
+              if(log.isErrorEnabled()) {
+                  log.error("出错啦", e);
+              }
+          }
+      }
+      … …
+  }
+  ```
+
+

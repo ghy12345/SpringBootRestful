@@ -1,6 +1,8 @@
 package me.groad.restfuldemo1.Controller;
 
 import me.groad.restfuldemo1.pojo.TvSeriesDto;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +24,15 @@ import java.util.List;
 @RequestMapping("/tvseries")
 public class TvSerisController
 {
+    //引入日志
+    private static final Log log = LogFactory.getLog(TvSerisController.class);
     @GetMapping
     public List<TvSeriesDto> getAll()
     {
+        if (log.isTraceEnabled())
+        {
+            log.trace("getAll()被调用了");
+        }
         List<TvSeriesDto> list = new ArrayList<>();
         //对日期进行操作
         Calendar instance = Calendar.getInstance();

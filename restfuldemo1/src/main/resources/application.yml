@@ -4,3 +4,11 @@ spring:
     time-zone: GMT+8
     serialization:
       write-dates-as-timestamps: false
+
+# 日志记录
+logging:
+  file: target/app.log
+  level:
+    ROOT: WARN
+    me.groad: TRACE
+    # me.groad.restfuldemo1.Controller: DEBUG
