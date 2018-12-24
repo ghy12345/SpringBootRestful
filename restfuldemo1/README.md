@@ -1,8 +1,10 @@
 # 课程总结
 ## 注解
+
 ### @RestController
 以json格式返回
 ### @GetMapping
+
 @RequestMapping(method = RequestMethod.GET)的缩写
 ### @SpringBootApplication
 @SpringBootApplication = (默认属性)@Configuration + @EnableAutoConfiguration + @ComponentScan。
@@ -45,9 +47,11 @@
 ### @RunWith(SpringRunner.class)
 让测试运行于Spring测试环境
 ### @SpringBootTest
+
 SpringBoot的单元测试
 
 ### springboot测试步骤
+
 直接在测试类上面加上如下2个注解
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -105,3 +109,39 @@ SpringBoot的单元测试
       serialization:
         write-dates-as-timestamps: false  #使用数值timestamp表示日期
   ```
+
+## 热部署(Hot Swapping)
+
+- 在pom中引入：都需要为true
+
+  ```xml
+  <dependency>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-devtools</artifactId>
+  	<optional>true</optional>
+  </dependency>
+  ```
+
+  ```xml
+  <plugin>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-maven-plugin</artifactId>
+     <configuration>
+        <fork>true</fork>
+     </configuration>
+  </plugin>
+  ```
+
+- idea编译器设置file→setting→compiler
+
+  ```xml
+  build project automatically
+  ```
+
+- 快捷键ctrl+alt+shift  /，勾选
+
+  ```
+  compiler.automake.allow.when.app.running
+  ```
+
+- 重启项目

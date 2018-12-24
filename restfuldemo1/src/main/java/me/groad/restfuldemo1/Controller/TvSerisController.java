@@ -30,6 +30,10 @@ public class TvSerisController
         Calendar instance = Calendar.getInstance();
         instance.set(2015, Calendar.OCTOBER, 16, 0, 0);
         list.add(new TvSeriesDto(1, "大好时光", instance.getTime()));
+        instance.set(2005, Calendar.JANUARY, 31, 0, 0);
+        list.add(new TvSeriesDto(2, "仙剑奇侠传", instance.getTime()));
+        instance.set(2015, Calendar.AUGUST, 31, 0, 0);
+        list.add(new TvSeriesDto(3, "伪装者", instance.getTime()));
         return list;
     }
 }
