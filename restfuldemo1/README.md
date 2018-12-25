@@ -3,10 +3,61 @@
 
 ### @RestController
 以json格式返回
-### @GetMapping
+### @GetMapping(类)
 
 @RequestMapping(method = RequestMethod.GET)的缩写
+
+#### @GetMapping("/{id}")(方法)
+
+请求地址为http://localhost:8080/xxxxx/id
+
+{id}为传递的参数，如下所示
+
+```java
+@GetMapping("/{id}")
+    public TvSeriesDto getOne(@PathVariable int id)
+    {
+    }
+```
+
+### @PathVariable
+
+参数绑定，获取到@RequestMapping注解传递的参数的值并绑定到方法的参数上
+
+```java
+@GetMapping("/{id}")
+    public TvSeriesDto getOne(@PathVariable int id)
+    {
+        
+或者指定@PathVariable使用哪一个URL中的变量
+@GetMapping("/{id}")
+    public TvSeriesDto getOne(@PathVariable("id") int id)
+    {
+```
+
+### @RequestBody
+
+该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区
+
+在异步请求时，返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；
+
+```java
+//将RequestBody中的数据转换为TvSeriesDto格式
+public TvSeriesDto insertOne(@RequestBody TvSeriesDto tvSeriesDto)
+    {
+        if (log.isTraceEnabled())
+        {
+            log.trace("这里应该写新增tvSeriesDto到数据库的代码，传递进来的参数是:" + tvSeriesDto);
+        }
+        tvSeriesDto.setId(9999);
+        return tvSeriesDto;
+    }
+```
+
+
+
 ### @SpringBootApplication
+
 @SpringBootApplication = (默认属性)@Configuration + @EnableAutoConfiguration + @ComponentScan。
 
 - @Configuration：提到@Configuration就要提到他的搭档@Bean。使用这两个注解就可以创建一个简单的spring配置类，可以用来替代相应的xml配置文件。
