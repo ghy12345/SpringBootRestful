@@ -20,6 +20,36 @@
     }
 ```
 
+#### @PostMapping
+
+```java
+@PostMapping
+public TvSeriesDto insertOne(@RequestBody TvSeriesDto tvSeriesDto)
+{
+```
+
+#### @PutMapping("/{id}")
+
+```java
+@PutMapping("/{id}")
+    public TvSeriesDto updateOne(@PathVariable int id, @RequestBody TvSeriesDto tvSeriesDto)
+    {
+```
+
+#### @DeleteMapping("/{id}")
+
+```java
+@DeleteMapping("/{id}")
+    public Map<String, String> deleteOne(@PathVariable int id, HttpServletRequest request, @RequestParam(value = "delete_reason", required = false) String deleteReason)
+    {
+```
+
+#### @RequestParam
+
+@RequestParam(value="delete_reason", required=false) String deleteReason 表示deleteReason参数的值，来自Request的参数delete_reason（等同于request.getParameter("delete_reason")，可以是URL中Querystring，也可以是form post里的值），required=false表示不是必须的。默认是required=true，required=true时，如果请求没有传递这个参数，会被返回400错误。
+
+类似的注解还有@CookieValue @RequestHeader等。
+
 ### @PathVariable
 
 参数绑定，获取到@RequestMapping注解传递的参数的值并绑定到方法的参数上
