@@ -1,12 +1,16 @@
 package me.groad.restfuldemo1.Controller;
 
 import me.groad.restfuldemo1.pojo.TvSeriesDto;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -163,6 +167,45 @@ public class TvSeriesController
             throw new ResourceNotFoundException();
         }
         return result;
+    }
+
+    /**  
+      * @description 上传
+      * @author Groad
+      * @date 2019/1/2 23:15
+      * @params [id, imgFile]
+      * @return void
+      */
+    @PostMapping(value = "/{id}/photos",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void addPhoto(@PathVariable int id, @RequestParam("photo")MultipartFile imgFile) throws Exception
+    {
+        if (log.isTraceEnabled())
+        {
+            log.trace("接受的文件:" + id + "收到的文件:" + imgFile.getOriginalFilename());
+        }
+        //保存文件
+        FileOutputStream fos = new FileOutputStream("target/" + imgFile.getOriginalFilename());
+        IOUtils.copy(imgFile.getInputStream(), fos);
+        fos.close();
+    }
+
+    /**  
+      * @description 返回非JSON格式(图片)
+      * @author Groad
+      * @date 2019/1/2 23:36
+      * @params [id]
+      * @return byte[]
+      */  
+    @GetMapping(value="/{id}/icon", produces=MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getIcon(@PathVariable int id) throws IOException
+    {
+        if (log.isTraceEnabled())
+        {
+            log.trace("getIcon(" + id + ")");
+        }
+        String iconFile = "src/main/resources/head.jpg";
+        InputStream is = new FileInputStream(iconFile);
+        return IOUtils.toByteArray(is);
     }
 
     /**  
