@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.*;
 import java.util.*;
 
@@ -51,14 +52,16 @@ public class TvSeriesController
             log.trace("getAll()被调用了");
         }
         List<TvSeriesDto> list = new ArrayList<>();
-        //对日期进行操作
-        Calendar instance = Calendar.getInstance();
-        instance.set(2015, Calendar.OCTOBER, 16, 0, 0);
-        list.add(new TvSeriesDto(1, "大好时光", instance.getTime()));
-        instance.set(2005, Calendar.JANUARY, 31, 0, 0);
-        list.add(new TvSeriesDto(2, "仙剑奇侠传", instance.getTime()));
-        instance.set(2015, Calendar.AUGUST, 31, 0, 0);
-        list.add(new TvSeriesDto(3, "伪装者", instance.getTime()));
+        ////对日期进行操作
+        //Calendar instance = Calendar.getInstance();
+        //instance.set(2015, Calendar.OCTOBER, 16, 0, 0);
+        //list.add(new TvSeriesDto(1, "大好时光", instance.getTime()));
+        //instance.set(2005, Calendar.JANUARY, 31, 0, 0);
+        //list.add(new TvSeriesDto(2, "仙剑奇侠传", instance.getTime()));
+        //instance.set(2015, Calendar.AUGUST, 31, 0, 0);
+        //list.add(new TvSeriesDto(3, "伪装者", instance.getTime()));
+        list.add(createSword());
+        list.add(createTime());
         return list;
     }
 
@@ -78,7 +81,7 @@ public class TvSeriesController
         }
         if (id == 1)
         {
-            return caerteTime();
+            return createTime();
         }
         else if (id == 2)
         {
@@ -98,8 +101,13 @@ public class TvSeriesController
       * @params [tvSeriesDto]
       * @return me.groad.restfuldemo1.pojo.TvSeriesDto
       */
+    /**
+     *  @Valid 注解表示需要验证传入的参数TvSeriesDto，需要验证的field在TvSeriesDto内通过注解定义（@NotNull, @DecimalMin等）
+     * @param tvSeriesDto
+     * @return
+     */
     @PostMapping
-    public TvSeriesDto insertOne(@RequestBody TvSeriesDto tvSeriesDto)
+    public TvSeriesDto insertOne(@Valid @RequestBody TvSeriesDto tvSeriesDto)
     {
         if (log.isTraceEnabled())
         {
@@ -125,7 +133,7 @@ public class TvSeriesController
         }
         if (id == 1)
         {
-            return caerteTime();
+            return createTime();
         }
         else if (id == 2)
         {
@@ -208,6 +216,8 @@ public class TvSeriesController
         return IOUtils.toByteArray(is);
     }
 
+
+
     /**  
       * @description 创建两个电视剧
       * @author Groad
@@ -215,7 +225,7 @@ public class TvSeriesController
       * @params []
       * @return me.groad.restfuldemo1.pojo.TvSeriesDto
       */  
-    private TvSeriesDto caerteTime()
+    private TvSeriesDto createTime()
     {
         Calendar c = Calendar.getInstance();
         c.set(2015, Calendar.OCTOBER, 16, 0, 0);

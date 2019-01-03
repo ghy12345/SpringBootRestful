@@ -227,7 +227,7 @@ SpringBoot的单元测试
 
 - 重启项目
 
-### [日志记录](https://blog.csdn.net/ztchun/article/details/79804583)
+## [日志记录](https://blog.csdn.net/ztchun/article/details/79804583)
 
 - Commons-logging or SLF4j
   - private static final Log log = LogFactory.getLog(Xxxx.class);
@@ -274,4 +274,45 @@ SpringBoot的单元测试
   }
   ```
 
+## 数据校验(JSR303标准)
+
+### @Null   
+
+验证对象是否为空
+
+### @NotNull    
+
+验证对象是否为非空
+
+### @Min    
+
+验证 Number 和 String 对象是否大等于指定的值
+
+### @Max    
+
+验证 Number 和 String 对象是否小等于指定的值
+
+### @Size   
+
+验证对象（Array,Collection,Map,String）长度是否在给定的范围之内
+
+### @Past   
+
+验证 Date 和 Calendar 对象是否在当前时间之前
+
+### @Future 
+
+验证 Date 和 Calendar 对象是否在当前时间之后
+
+### @AssertTrue 
+
+验证 Boolean 对象是否为 true
+
+### @AssertFalse    
+
+验证 Boolean 对象是否为 false
+
+### @Valid 
+
+级联验证注解(加在bean前面，表示这个bean内部的bean也需要验证)
 
