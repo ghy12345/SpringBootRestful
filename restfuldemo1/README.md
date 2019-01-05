@@ -245,7 +245,7 @@ SpringBoot的单元测试
     level:
       ROOT: WARN
       me.groad: TRACE
-      me.groad.restfuldemo1.Controller: DEBUG
+      me.groad.restfuldemo1.controller: DEBUG
   ```
 
 - 在方法中引入

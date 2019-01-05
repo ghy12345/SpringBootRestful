@@ -4,6 +4,29 @@ spring:
     time-zone: GMT+8
     serialization:
       write-dates-as-timestamps: false
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.200.53.134:3306/anime?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username: anime
+    password: anime
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      filters: stat,wall,log4j2,config
+      initialSize: 20
+      maxActive: 100
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 5
+      poolPreparedStatements: true
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
 
 # 日志记录
 logging:
@@ -11,4 +34,7 @@ logging:
   level:
     ROOT: WARN
     me.groad: TRACE
-    # me.groad.restfuldemo1.Controller: DEBUG
+    # me.groad.restfuldemo1.controller: DEBUG
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml

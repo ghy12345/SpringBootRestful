@@ -1,4 +1,4 @@
-package me.groad.restfuldemo1.Controller;
+package me.groad.restfuldemo1.controller;
 
 import me.groad.restfuldemo1.pojo.TvSeriesDto;
 import org.apache.commons.io.IOUtils;
@@ -16,7 +16,7 @@ import java.util.*;
 
 /**
  * @BelongsProject: restfuldemo1
- * @BelongsPackage: me.groad.restfuldemo1.Controller
+ * @BelongsPackage: me.groad.restfuldemo1.controller
  * @Author: Groad
  * @CreateTime: 2018-12-23 22:37
  * @Description:
